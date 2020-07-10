@@ -10,7 +10,7 @@
   
   <title>
     
-      Tags | Hua
+      Hua
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -153,29 +153,40 @@
 </header>
 
     <div id="article-banner">
-  <h2>Tags</h2>
-  <p class="post-date">标签检索</p>
+  <h2>Archives</h2>
+  <p class="post-date">文章归档</p>
 </div>
-<main class="app-body">
-  <div id="tag-cloud">
+<main class="app-body" id="archives">
+  
+  
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2020
+  </h1>
+  <div class="section-list">
+    
+    
+      <div class="section-list-item">
+        <a href="/2020/07/10/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%B9%B6%E8%A1%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-title">前端工程化并行解决方案</a>
+        <p class="archive-date">07-10</p>
+      </div>
+    
+      <div class="section-list-item">
+        <a href="/2020/07/10/%E3%80%90style-resources-loader%E3%80%91%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BC%E5%85%A5CSS/" class="archive-title">【style-resources-loader】自动化导入CSS</a>
+        <p class="archive-date">07-10</p>
+      </div>
     
   </div>
+</section>
   
 </main>
 
 <script>
   (function () {
-    var url = 'https://hugohui.github.io/tags/index.html'
-    $('#article-banner').geopattern(url)
-    $('.header').removeClass('fixed-header')
-
-    var tag = location.hash.replace('#', '')
-    if (tag) {
-      var tagId = "#tag-" + tag;
-      $("html, body").animate({
-        scrollTop: $(tagId).offset().top 
-      }, 400)
-    }
+    var url = 'https://hugohui.github.io/archives/2020/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header');
   })();
 </script>
     <div class="scroll-top">
