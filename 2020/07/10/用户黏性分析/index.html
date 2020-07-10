@@ -10,7 +10,7 @@
   
   <title>
     
-      python计算两组数据的P值 | Hua
+      用户黏性分析 | Hua
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -153,7 +153,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>python计算两组数据的P值</h2>
+  <h2>用户黏性分析</h2>
   <p class="post-date">2020-07-10</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -163,27 +163,25 @@
   <!-- Article START -->
   <article class="post-article">
     <section class="markdown-content"><blockquote>
-<p>我们在做A/B试验评估的时候需要借助p_value,这篇文章记录如何利用python计算两组数据的显著性。</p>
+<p>DAU / MAU值越大，说明app用户黏性越高！</p>
 </blockquote>
-<h4 id="一、代码"><a href="#一、代码" class="headerlink" title="一、代码"></a>一、代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># TTest.py</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"># Created on 2020-05-20 20:36</span></span><br><span class="line"><span class="string"># TTest.py</span></span><br><span class="line"><span class="string"># @author: huiwenhua</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Import the packages</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_p_value</span><span class="params">(arrA, arrB)</span>:</span></span><br><span class="line"></span><br><span class="line">    a = np.array(arrA)</span><br><span class="line">    b = np.array(arrB)</span><br><span class="line"></span><br><span class="line">    t, p = stats.ttest_ind(a,b)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    get_p_value([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, ], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>])</span><br></pre></td></tr></table></figure>
-
-<h4 id="二、T检验：两样本T检验"><a href="#二、T检验：两样本T检验" class="headerlink" title="二、T检验：两样本T检验"></a>二、T检验：两样本T检验</h4><p><strong><em>两样本t检验</em></strong>是比较两个样本所代表的两个总体均值是否存在显著差异。除了要求样本来自正态分布，还要求两个样本的总体方差相等也就是“方差齐性”。</p>
-<p>检验原假设：样本均值无差异(μ=μ0)</p>
-<p>Python命令stats.ttest_ind(data1,data2)</p>
-<p>当不确定两总体方差是否相等时，应先利用levene检验检验两总体是否具有方差齐性stats.levene(data1,data2)如果返回结果的p值远大于0.05，那么我们认为两总体具有方差齐性。如果两总体不具有方差齐性，需要加上参数equal_val并设定为False，如下。</p>
-<p>stats.ttest_ind(data1,data2,equal_var=False) // TTest中默认是具有方差齐性</p>
-<h4 id="三、结果解释"><a href="#三、结果解释" class="headerlink" title="三、结果解释"></a>三、结果解释</h4><p>当p值小于某个显著性水平α(比如0.05)时，则认为样本均值存在显著差异，具体的分析要看所选择的是双边假设还是单边假设（又分小于和大于）注意stats.ttest_ind进行双侧检验。<br>当t值大于0，则有(（1-p）* 100)%的把握认为认为第一组数据好与第二组数据。例如p=0.05,那么我们有95%的把握认为第一组数据好于第二组数据。</p>
+<h4 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h4><ul>
+<li>DAU 和 MAU<ul>
+<li>DAU（Daily Active User）,日活跃用户数</li>
+<li>MAU（Monthly Active User）,月活跃用户数</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-举个🌰"><a href="#2-举个🌰" class="headerlink" title="2.举个🌰"></a>2.举个🌰</h4><ul>
+<li>1.如果每天活跃用户都是同样用户，例如每日活跃10万（DAU=10万），那月活跃也都是这10万用户（MAU=10万），DAU/MAU 接近1，也就是100%，这样的app用户黏性极高，比如微信！</li>
+<li>2.如果每天活跃用户都是不一样的用户，例如每日活跃10万（DAU=10万），月活跃为30 * 10万（MAU=30*10万），DAU/MAU为1/30，这样的app用户黏性极低！</li>
+</ul>
+<h4 id="3-黏性指标计算公式"><a href="#3-黏性指标计算公式" class="headerlink" title="3.黏性指标计算公式"></a>3.黏性指标计算公式</h4><ul>
+<li>DAU/MAU<br>过去一天的DAU/过去一月的MAU</li>
+<li>月平均活跃天数<br>过去一月每天DAU之和/过去一月MAU</li>
+</ul>
 </section>
     <!-- Tags START -->
-    
-      <div class="tags">
-        <span>Tags:</span>
-        
-  <a href="/tags#数据分析, p_value" >
-    <span class="tag-code">数据分析, p_value</span>
-  </a>
-
-      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
@@ -191,20 +189,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/07/10/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%B9%B6%E8%A1%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+      <a class="nav-left" href="/2020/07/10/python%E8%AE%A1%E7%AE%97%E4%B8%A4%E7%BB%84%E6%95%B0%E6%8D%AE%E7%9A%84P%E5%80%BC/">
         <span class="nav-arrow">← </span>
         
-          前端工程化并行解决方案
+          python计算两组数据的P值
         
       </a>
     
-    
-      <a class="nav-right" href="/2020/07/10/%E7%94%A8%E6%88%B7%E9%BB%8F%E6%80%A7%E5%88%86%E6%9E%90/">
-        
-          用户黏性分析
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -250,7 +241,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、代码"><span class="toc-nav-text">一、代码</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、T检验：两样本T检验"><span class="toc-nav-text">二、T检验：两样本T检验</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、结果解释"><span class="toc-nav-text">三、结果解释</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#1-基本概念"><span class="toc-nav-text">1.基本概念</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#2-举个🌰"><span class="toc-nav-text">2.举个🌰</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#3-黏性指标计算公式"><span class="toc-nav-text">3.黏性指标计算公式</span></a></li></ol>
     
   </div>
 </aside>
@@ -260,7 +251,7 @@
 
 <script>
   (function () {
-    var url = 'https://hugohui.github.io/2020/07/10/python计算两组数据的P值/';
+    var url = 'https://hugohui.github.io/2020/07/10/用户黏性分析/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -322,7 +313,7 @@
     var gitmentConfig = "Hugohui";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "python计算两组数据的P值",
+        id: "用户黏性分析",
         owner: "Hugohui",
         repo: "https://github.com/Hugohui/Hugohui.github.io.git",
         oauth: {
