@@ -10,7 +10,7 @@
   
   <title>
     
-      前端工程化并行解决方案 | Hua
+      python计算两组数据的P值 | Hua
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -153,7 +153,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>前端工程化并行解决方案</h2>
+  <h2>python计算两组数据的P值</h2>
   <p class="post-date">2020-07-10</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -162,28 +162,25 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h4 id="一、什么是并行前端工程化？"><a href="#一、什么是并行前端工程化？" class="headerlink" title="一、什么是并行前端工程化？"></a>一、什么是并行前端工程化？</h4><p>在当前前端开发过程中我们一般都会使用一些脚手架工具，例如vue-cli，在<code>package.json</code>中配置着一些运行命令，比如:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"serve"</span>: <span class="string">"vue-cli-service serve"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们可以通过<code>npm run serve</code>来运行我们的web工程（这里是起了一个本地服务），并可以在浏览器访问该服务。如果我们项目不只有一个web服务，我们还需要一个<code>mock</code>接口模拟服务（用来模拟后端接口返回数据），我们可以做如下配置：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"serve"</span>: <span class="string">"vue-cli-service serve"</span>,</span><br><span class="line">    <span class="string">"mock"</span>: <span class="string">"cd mock &amp;&amp; ts-node-dev mock-server.ts"</span> <span class="comment">// mock-server.ts是使用express搭建的node服务，ts-node-dev是加载运行.ts文件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们同样可以通过<code>npm run mock</code>运行我们的<code>mock</code>服务。但是有个问题，这样我们是打开了两个<code>Terminal</code>,我们要结束进程就需要找到两个<code>Terminal</code>，分别通过<code>Ctrl+C</code>来结束。那我们如果更高效操作呢？这个时候我们可以这样写：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"serve"</span>: <span class="string">"concurrently \"npm:mock\" \"vue-cli-service serve\""</span> <span class="comment">// 使用concurrently解决方案，这里需要注意转义符的使用</span></span><br><span class="line">    <span class="string">"mock"</span>: <span class="string">"cd mock &amp;&amp; ts-node-dev mock-server.ts"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这样，当我们运行<code>npm run serve</code>的时候两个服务都会在同一个<code>Terminal</code>中运行，并且只需要在当前<code>Terminal</code>通过一次<code>Ctrl+C</code>就能结束两个服务。这就是<strong><em>并行前端工程</em></strong>。</p>
-<h4 id="二、安装Concurrently"><a href="#二、安装Concurrently" class="headerlink" title="二、安装Concurrently"></a>二、安装Concurrently</h4><p>这个工具是Node.js写的，可以用它运行任何命令。</p>
-<h5 id="2-1全局安装"><a href="#2-1全局安装" class="headerlink" title="2.1全局安装"></a>2.1全局安装</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g concurrently</span><br></pre></td></tr></table></figure>
-<h5 id="2-2项目安装"><a href="#2-2项目安装" class="headerlink" title="2.2项目安装"></a>2.2项目安装</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install concurrently --save</span><br></pre></td></tr></table></figure>
+    <section class="markdown-content"><blockquote>
+<p>我们在做A/B试验评估的时候需要借助p_value,这篇文章记录如何利用python计算两组数据的显著性。</p>
+</blockquote>
+<h4 id="一、代码"><a href="#一、代码" class="headerlink" title="一、代码"></a>一、代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># TTest.py</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"># Created on 2020-05-20 20:36</span></span><br><span class="line"><span class="string"># TTest.py</span></span><br><span class="line"><span class="string"># @author: huiwenhua</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## Import the packages</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_p_value</span><span class="params">(arrA, arrB)</span>:</span></span><br><span class="line"></span><br><span class="line">    a = np.array(arrA)</span><br><span class="line">    b = np.array(arrB)</span><br><span class="line"></span><br><span class="line">    t, p = stats.ttest_ind(a,b)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> p</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    get_p_value([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">5</span>, ], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>])</span><br></pre></td></tr></table></figure>
 
-<h4 id="三、用发"><a href="#三、用发" class="headerlink" title="三、用发"></a>三、用发</h4><p>用引号将单独的命令括起来：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">concurrently &quot;command1 arg&quot; &quot;command2 arg&quot;</span><br></pre></td></tr></table></figure>
-
+<h4 id="二、T检验：两样本T检验"><a href="#二、T检验：两样本T检验" class="headerlink" title="二、T检验：两样本T检验"></a>二、T检验：两样本T检验</h4><p><strong><em>两样本t检验</em></strong>是比较两个样本所代表的两个总体均值是否存在显著差异。除了要求样本来自正态分布，还要求两个样本的总体方差相等也就是“方差齐性”。</p>
+<p>检验原假设：样本均值无差异(μ=μ0)</p>
+<p>Python命令stats.ttest_ind(data1,data2)</p>
+<p>当不确定两总体方差是否相等时，应先利用levene检验检验两总体是否具有方差齐性stats.levene(data1,data2)如果返回结果的p值远大于0.05，那么我们认为两总体具有方差齐性。如果两总体不具有方差齐性，需要加上参数equal_val并设定为False，如下。</p>
+<p>stats.ttest_ind(data1,data2,equal_var=False) // TTest中默认是具有方差齐性</p>
+<h4 id="三、结果解释"><a href="#三、结果解释" class="headerlink" title="三、结果解释"></a>三、结果解释</h4><p>当p值小于某个显著性水平α(比如0.05)时，则认为样本均值存在显著差异，具体的分析要看所选择的是双边假设还是单边假设（又分小于和大于）注意stats.ttest_ind进行双侧检验。<br>当t值大于0，则有(（1-p）* 100)%的把握认为认为第一组数据好与第二组数据。例如p=0.05,那么我们有95%的把握认为第一组数据好于第二组数据。</p>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#前端工程化" >
-    <span class="tag-code">前端工程化</span>
+  <a href="/tags#数据分析, p_value" >
+    <span class="tag-code">数据分析, p_value</span>
   </a>
 
       </div>
@@ -194,20 +191,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/07/10/%E3%80%90style-resources-loader%E3%80%91%E8%87%AA%E5%8A%A8%E5%8C%96%E5%AF%BC%E5%85%A5CSS/">
+      <a class="nav-left" href="/2020/07/10/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96%E5%B9%B6%E8%A1%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
         <span class="nav-arrow">← </span>
         
-          【style-resources-loader】自动化导入CSS
+          前端工程化并行解决方案
         
       </a>
     
-    
-      <a class="nav-right" href="/2020/07/10/python%E8%AE%A1%E7%AE%97%E4%B8%A4%E7%BB%84%E6%95%B0%E6%8D%AE%E7%9A%84P%E5%80%BC/">
-        
-          python计算两组数据的P值
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -253,7 +243,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、什么是并行前端工程化？"><span class="toc-nav-text">一、什么是并行前端工程化？</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、安装Concurrently"><span class="toc-nav-text">二、安装Concurrently</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#2-1全局安装"><span class="toc-nav-text">2.1全局安装</span></a></li><li class="toc-nav-item toc-nav-level-5"><a class="toc-nav-link" href="#2-2项目安装"><span class="toc-nav-text">2.2项目安装</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、用发"><span class="toc-nav-text">三、用发</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、代码"><span class="toc-nav-text">一、代码</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、T检验：两样本T检验"><span class="toc-nav-text">二、T检验：两样本T检验</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、结果解释"><span class="toc-nav-text">三、结果解释</span></a></li></ol>
     
   </div>
 </aside>
@@ -263,7 +253,7 @@
 
 <script>
   (function () {
-    var url = 'https://hugohui.github.io/2020/07/10/前端工程化并行解决方案/';
+    var url = 'https://hugohui.github.io/2020/07/10/python计算两组数据的P值/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -325,7 +315,7 @@
     var gitmentConfig = "yanm1ng";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "前端工程化并行解决方案",
+        id: "python计算两组数据的P值",
         owner: "yanm1ng",
         repo: "yanm1ng.github.io",
         oauth: {
