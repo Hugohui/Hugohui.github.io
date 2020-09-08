@@ -10,7 +10,7 @@
   
   <title>
     
-      前端团队codeReview规范以及流程 | Hua
+      【拿下JS算法】：归并排序 | Hua
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -153,8 +153,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>前端团队codeReview规范以及流程</h2>
-  <p class="post-date">2020-07-10</p>
+  <h2>【拿下JS算法】：归并排序</h2>
+  <p class="post-date">2020-09-08</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -162,100 +162,35 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><blockquote>
-<p>俗话说，没有无缘无故的爱，也没有无缘无故的恨，当然也没有无缘无故的Code Review!</p>
-</blockquote>
-<h4 id="一、目的"><a href="#一、目的" class="headerlink" title="一、目的"></a>一、目的</h4><ul>
-<li>保证团队编码风格一致<ul>
-<li>自己的代码要给别人看，开发过程中需要潜意识的注意代码规，以及逻辑严谨性。</li>
-</ul>
-</li>
-<li>保证项目质量，扼杀潜在风险<ul>
-<li>虽然功能完成后自己会自测，但难免会遗漏掉一些边界点，或者受思维限制的一些点。</li>
-</ul>
-</li>
-<li>相互提升<ul>
-<li>多学习别人代码，看高手是如何写出严谨、简洁、优美的代码，和自己做对照，取齐精髓，去其糟粕！</li>
-</ul>
-</li>
-<li>便捷交叉维护<ul>
-<li>通过交叉Code Review过程，了解不同业务，方便后期交叉维护，无需花更多时间上手。<h4 id="二、如何开展"><a href="#二、如何开展" class="headerlink" title="二、如何开展"></a>二、如何开展</h4></li>
-</ul>
-</li>
-<li>结对<ul>
-<li>至少两人为一小组</li>
-</ul>
-</li>
-<li>review以及上线流程<ul>
-<li>所有项目master设置为Protected,并且设置allowed to push为No one，设置Merge checks为All discussions must be resolved，该分支作为deployment分支</li>
-<li>开发时创建dev分支，并且同样设置为Protected，allowed to push为No one，设置Merge checks为All discussions must be resolved，该分支作为development分支</li>
-<li>个人分支最好以自己名字命名，需要review代码时，提Merge Request到dev分支，代码review人对代码进行review，对不符合规范的代码编辑comment，直到代码没有问题后标记comment为resolved（此时分支才会允许merge）</li>
-<li>dev分支经过测试没问题上线之后，提MR到master分支，至此项目才真正上线完成</li>
-</ul>
-</li>
-<li>集体<ul>
-<li>每周周会集体review代码，每次review核心代码，预期每周集体review三位同学代码</li>
-<li>各自讲解自己的模块，复杂业务最好有流程图</li>
-</ul>
-</li>
-<li>git hooks – pre commit<ul>
-<li>新项目统一使用ESLint作为代码规范检测工具，每次Git commit会判断代码是否符合规范，只有符合规范的才能被提交<h4 id="三、自测check-list"><a href="#三、自测check-list" class="headerlink" title="三、自测check list"></a>三、自测check list</h4>之前都说在功能完成之后要进行自测，但具体从哪些方面切入没有定义，之后大概可以从以下方面切入：</li>
-</ul>
-</li>
-<li>常规检查<ul>
-<li>代码是否能正常运行？</li>
-<li>控制台是否有明显的报错？</li>
-<li>代码有没有达到预期需求效果？</li>
-<li>代码逻辑是否简单易懂？代码书写是否符合规范？是否尽可能组件化了？</li>
-<li>有没有重复造轮子？</li>
-<li>去掉大段被注释的代码？（如果注释代码是可用的，那就先提交未删除注释的代码到Git上，然后再提交删除了注释的代码，以后能回滚就可以）</li>
-<li>定时器是否随生命周期消除？按钮是否控制了单次点击？</li>
-</ul>
-</li>
-<li>安全检查<ul>
-<li>引入他人（公司内部或者其他外部机构）依赖包，是否存在不可用和版本升级导致功能不可用的风险？</li>
-<li>所有请求是否都使用了https，包括图片链接，对App应用嵌入的页面，是否提供了https协议链接？</li>
-<li>代码注释或者文案中是否包含了敏感词汇？</li>
-</ul>
-</li>
-<li>文档检查<ul>
-<li>是否有符合规范的注释？注释是否描述准确？对方法参数或者名词是否进行了解释？</li>
-<li>第三方库使用是否有完善文档？</li>
-<li>Readme文档是否书写规范？是否对项目有准确描述？</li>
-</ul>
-</li>
-<li>性能检查<ul>
-<li>页面加载是否超过了3s?超过3s的原因是什么？有没有友好的提示？</li>
-<li>代码有没有明显影响性能的逻辑和计算？</li>
-<li>组件层级是否可控？组件通信是否正常？页面嵌套是否简单？<h4 id="四、评分标准"><a href="#四、评分标准" class="headerlink" title="四、评分标准"></a>四、评分标准</h4>总分30分，24分以上是允许被merge到master的代码，低于24分需要进行优化之后再提MR。</li>
-</ul>
-</li>
-<li>需求<ul>
-<li>9-10分：项目结构清晰，组件合理，代码逻辑严谨，功能无遗漏</li>
-<li>6-8分：无逻辑错误，功能无遗漏</li>
-<li>0-5分：代码逻辑错误，功能遗漏</li>
-</ul>
-</li>
-<li>代码<ul>
-<li>9-10分：代码简洁，合理注释，模块独立</li>
-<li>6-8分：模块中度耦合，代码相对简洁<br>-0-5分：模块耦合度较高，代码注释不清晰，代码书写复杂，命名不规范</li>
-</ul>
-</li>
-<li>可读性<ul>
-<li>9-10分：严格的代码规范，代码逻辑易理解，注释清晰</li>
-<li>6-8分：存在阅读障碍的逻辑代码，注释模糊</li>
-<li>0-5分：逻辑代码混乱复杂，理解起来极其空难</li>
+    <section class="markdown-content"><h4 id="一、概念"><a href="#一、概念" class="headerlink" title="一、概念"></a>一、概念</h4><ul>
+<li>“归并”：将两个已经排序的序列合并成一个序列的操作。</li>
+<li>“归并排序”：创建在归并操作上的一种有效的排序算法，1945年由约翰·冯·诺伊曼首次提出。该算法是采用“分治法”的一个非常典型的应用，且各层分治递归可以同时进行。</li>
+<li>“分治法”：“分而治之”，把一个复杂的问题分成两个或更多的相同或相似的子问题，直到最后子问题可以简单的直接求解，原问题的解即子问题的解的合并。<ul>
+<li>分割：递归地把当前序列平均分割成两半</li>
+<li>集成：在保持元素顺序的同时将上一步得到的子序列集成到一起（归并）</li>
 </ul>
 </li>
 </ul>
-</section>
+<h4 id="二、特点"><a href="#二、特点" class="headerlink" title="二、特点"></a>二、特点</h4><p>稳定、高效（速度仅次于快速排序）、消耗空间。</p>
+<h4 id="三、思想梳理"><a href="#三、思想梳理" class="headerlink" title="三、思想梳理"></a>三、思想梳理</h4><p>现在有数组[12, 2 , 13, 23, 4, 45], 分步骤执行</p>
+<ul>
+<li>第一步：<br>将原序列分割成长度为n的子序列<br>[12] [2] [13] [23] [4] [45]</li>
+<li>第二步：<br>每两个子序列进行对比，将结果放入一个新序列<br>[12] [2] [13] [23] [4] [45]<br>[2 , 12] [13, 23] [4, 45]</li>
+<li>第三步<br>将第二步中新的序列再进行两两对比，重复此环节，得到最终结果<br>[2 , 12] [13, 23] [4, 45]<br>[2, 12, 13 23] [4, 45]<br>[2, 4, 12, 13, 23, 45]</li>
+</ul>
+<h4 id="四、代码逻辑"><a href="#四、代码逻辑" class="headerlink" title="四、代码逻辑"></a>四、代码逻辑</h4><ul>
+<li>将此序列均分成两个长度为n/2的子序列</li>
+<li>再将每个子序列均分成两个m/2个子序列，直到长度为1</li>
+<li>将两个排序好的子序列合并成一个新序列，得到最终序列</li>
+</ul>
+<h4 id="五、代码实现"><a href="#五、代码实现" class="headerlink" title="五、代码实现"></a>五、代码实现</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mergeSort</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 序列长度为1时退出</span></span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt; <span class="number">2</span> ) &#123;</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将序列分为两个子序列，这一块起到“分治法”中的“分割”</span></span><br><span class="line">    <span class="keyword">const</span> middle = <span class="built_in">Math</span>.floor(arr.length/<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">const</span> left = arr.slice(<span class="number">0</span>, middle)</span><br><span class="line">    <span class="keyword">const</span> right = arr.slice(middle)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 递归，这一块起到“分治法”中的“集成”</span></span><br><span class="line">    <span class="keyword">return</span> merge(mergeSort(left), mergeSort(right))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">merge</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> result = []</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 两个子序列进行比较，从小到大放入新的序列result中</span></span><br><span class="line">    <span class="keyword">while</span>(left.length &gt; <span class="number">0</span> &amp;&amp; right.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 将较小的放入result,并改变left或者right的长度，灵活使用shift方法</span></span><br><span class="line">        <span class="keyword">if</span> (left[<span class="number">0</span>] &lt; right[<span class="number">0</span>]) &#123;</span><br><span class="line">            result.push(left.shift())</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            result.push(right.shift())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 先将小的元素放入result中，直到left或者right为空，剩余的一个数组肯定是大于result的有序序列，所以直接通过concat进行合并返回</span></span><br><span class="line">    <span class="keyword">return</span> result.concat(left, right)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 测试</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">12</span>, <span class="number">2</span> , <span class="number">13</span>, <span class="number">23</span>, <span class="number">4</span>, <span class="number">45</span>]</span><br><span class="line">mergeSort(arr) <span class="comment">// [2, 4, 12, 13, 23, 45]</span></span><br></pre></td></tr></table></figure></section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Code Review" >
-    <span class="tag-code">Code Review</span>
+  <a href="/tags#拿下算法" >
+    <span class="tag-code">拿下算法</span>
   </a>
 
       </div>
@@ -266,20 +201,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/07/10/%E7%94%A8%E6%88%B7%E9%BB%8F%E6%80%A7%E5%88%86%E6%9E%90/">
+      <a class="nav-left" href="/2020/07/10/%E5%89%8D%E7%AB%AF%E5%9B%A2%E9%98%9FcodeReview%E8%A7%84%E8%8C%83%E4%BB%A5%E5%8F%8A%E6%B5%81%E7%A8%8B/">
         <span class="nav-arrow">← </span>
         
-          用户黏性分析
+          前端团队codeReview规范以及流程
         
       </a>
     
-    
-      <a class="nav-right" href="/2020/09/08/%E3%80%90%E6%8B%BF%E4%B8%8BJS%E7%AE%97%E6%B3%95%E3%80%91%EF%BC%9A%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
-        
-          【拿下JS算法】：归并排序
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -325,7 +253,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、目的"><span class="toc-nav-text">一、目的</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、如何开展"><span class="toc-nav-text">二、如何开展</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、自测check-list"><span class="toc-nav-text">三、自测check list</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#四、评分标准"><span class="toc-nav-text">四、评分标准</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#一、概念"><span class="toc-nav-text">一、概念</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#二、特点"><span class="toc-nav-text">二、特点</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#三、思想梳理"><span class="toc-nav-text">三、思想梳理</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#四、代码逻辑"><span class="toc-nav-text">四、代码逻辑</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#五、代码实现"><span class="toc-nav-text">五、代码实现</span></a></li></ol>
     
   </div>
 </aside>
@@ -335,7 +263,7 @@
 
 <script>
   (function () {
-    var url = 'https://hugohui.github.io/2020/07/10/前端团队codeReview规范以及流程/';
+    var url = 'https://hugohui.github.io/2020/09/08/【拿下JS算法】：归并排序/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -397,7 +325,7 @@
     var gitmentConfig = "Hugohui";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "前端团队codeReview规范以及流程",
+        id: "【拿下JS算法】：归并排序",
         owner: "Hugohui",
         repo: "https://github.com/Hugohui/Hugohui.github.io.git",
         oauth: {
